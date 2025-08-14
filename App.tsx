@@ -43,23 +43,13 @@ const App: React.FC = () => {
     setModalState(prevState => ({ ...prevState, isOpen: false }));
   }, []);
 
-  const handleNavigation = useCallback((url: string, title: string, content: string, confirmButtonClass?: string, imageUrl?: string) => {
+  const handleNavigation = useCallback((url: string, title: string, content: string, confirmButtonClass?: string) => {
     setModalState({
       isOpen: true,
       title,
       content: (
         <div>
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">{content}</p>
-          {imageUrl && (
-            <div className="flex justify-center mt-4">
-              <img 
-                src={imageUrl} 
-                alt={`${title} logo`} 
-                className="rounded-lg shadow-md"
-                style={{ maxHeight: '100px' }} 
-              />
-            </div>
-          )}
         </div>
       ),
       onConfirm: () => window.open(url, '_blank', 'noopener,noreferrer'),

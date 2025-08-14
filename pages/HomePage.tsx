@@ -1,10 +1,11 @@
+
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useAnimationFrame, wrap, useMotionValueEvent } from 'framer-motion';
 import LinkButton from '../components/LinkButton';
 import { InstagramIcon, TiktokIcon, EmailIcon, LinkedinIcon, YoutubeIcon } from '../components/icons';
 
 interface HomePageProps {
-  onNavigate: (url: string, title: string, content: string, confirmButtonClass?: string, imageUrl?: string) => void;
+  onNavigate: (url: string, title: string, content: string, confirmButtonClass?: string) => void;
   onShowAbout: () => void;
   onShowConstructionModal: () => void;
   onShowPartnershipForm: () => void;
@@ -31,7 +32,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
     {
       text: 'Insta',
       icon: <InstagramIcon />,
-      action: () => onNavigate('https://www.instagram.com/luizaalk_/', 'Abrir Instagram', 'Você será redirecionado para o perfil da Luiza no Instagram.', 'bg-pink-600 hover:bg-pink-700 focus:ring-pink-500', '/insta.png'),
+      action: () => onNavigate('https://www.instagram.com/luizaalk_/', 'Abrir Instagram', 'Você será redirecionado para o perfil da Luiza no Instagram.', 'bg-pink-600 hover:bg-pink-700 focus:ring-pink-500'),
       styling: {
         textColor: 'text-white',
         hoverTextColor: 'group-hover:text-white',
@@ -41,7 +42,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
     {
       text: 'TikTok +300K',
       icon: <TiktokIcon className="filter-3d-effect" />,
-      action: () => onNavigate('https://www.tiktok.com/@luizakruppa0', 'Abrir TikTok', 'Você será redirecionado para o perfil da Luiza no TikTok.', 'bg-red-500 hover:bg-red-600 dark:bg-sky-400 dark:hover:bg-sky-500 focus:ring-red-400 dark:focus:ring-sky-300', '/tiktok.png'),
+      action: () => onNavigate('https://www.tiktok.com/@luizakruppa0', 'Abrir TikTok', 'Você será redirecionado para o perfil da Luiza no TikTok.', 'bg-red-500 hover:bg-red-600 dark:bg-sky-400 dark:hover:bg-sky-500 focus:ring-red-400 dark:focus:ring-sky-300'),
       styling: {
         textColor: 'text-white',
         hoverTextColor: 'group-hover:text-white',
@@ -132,7 +133,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
 
   return (
     <div className="flex flex-col items-center justify-center pt-4 pb-4 animate-fade-in">
-      <div className="relative w-24 h-24 md:w-28 md:h-28">
+      <div className="relative w-44 h-44 md:w-56 md:h-56">
         {/* Animated Border */}
         <div className="absolute -inset-0.5 rounded-full bg-pink-400 dark:bg-cyan-400 [animation:border-pulse_4s_ease-in-out_infinite]" />
         
