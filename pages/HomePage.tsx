@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useAnimationFrame, wrap, useMotionValueEvent, useReducedMotion } from 'framer-motion';
 import LinkButton from '../components/LinkButton';
@@ -136,13 +135,13 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
   return (
     <div className="flex flex-col items-center justify-center pt-4 pb-4 animate-fade-in">
       <div className="relative w-44 h-44 md:w-56 md:h-56">
-        {/* Animated Border */}
-        <div className="absolute -inset-0.5 rounded-full bg-pink-400 dark:bg-cyan-400 [animation:border-pulse_4s_ease-in-out_infinite]" />
+        {/* Animated RGB Border */}
+        <div className="absolute -inset-0.5 rounded-full rgb-border-gradient [animation:rgb-border-spin_4s_linear_infinite]" />
         
-        {/* Inner spacing to make the outer div look like a border */}
+        {/* Container for the image, creating the border effect with padding */}
         <div 
           onClick={onShowVideoModal}
-          className="relative group w-full h-full rounded-full overflow-hidden p-1 bg-white/30 dark:bg-black/30 shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer"
+          className="relative group w-full h-full rounded-full overflow-hidden p-2 shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer"
         >
             <img src="/profile.png" alt="Luiza Kruppa" className="w-full h-full object-cover rounded-full transition-all duration-300 group-hover:brightness-75" />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">

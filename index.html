@@ -105,6 +105,29 @@
           transform: scale(1) translateY(0);
         }
       }
+      
+      /* Gamer RGB border effect */
+      .rgb-border-gradient {
+        background: conic-gradient(
+          from 180deg at 50% 50%,
+          #ec4899, /* pink-500 */
+          #d946ef, /* fuchsia-500 */
+          #8b5cf6, /* violet-500 */
+          #3b82f6, /* blue-500 */
+          #22d3ee, /* cyan-400 */
+          #10b981, /* emerald-500 */
+          #f59e0b, /* amber-500 */
+          #ef4444, /* red-500 */
+          #ec4899  /* pink-500 to loop */
+        );
+      }
+
+      @keyframes rgb-border-spin {
+        to {
+          transform: rotate(1turn);
+        }
+      }
+      
       @keyframes border-pulse {
         50% { opacity: 0.5; }
       }
