@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luiza Kruppa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            // Animation is now handled by Framer Motion
+          },
+        },
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        /* Light theme gradient */
+        background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #fbc2eb, #a6c1ee);
+        background-size: 400% 400%;
+        animation: gradient-animation 15s ease infinite;
+      }
+      .dark body {
+        /* Dark theme gradient */
+        background: linear-gradient(-45deg, #0f2027, #232526, #2c5364, #414345);
+        background-size: 400% 400%;
+        animation: gradient-animation 15s ease infinite;
+      }
+      /* Custom scrollbar for a modern look */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+      }
+      .dark ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+      }
+      .dark ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      /* 3D Anaglyph effect for TikTok button icon */
+      .filter-3d-effect {
+        filter: drop-shadow(1.5px 1.5px 0px #ef4444) drop-shadow(-1.5px -1.5px 0px #38bdf8); /* red-500, sky-400 */
+      }
+       /* 3D text effect for TikTok text */
+      .text-3d-effect {
+        text-shadow: 1px 1px 0px #ef4444, -1px -1px 0px #38bdf8;
+      }
+      
+      /* Animated Border Gradients */
+      .insta-border { background-image: linear-gradient(to right, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); }
+      .tiktok-border { background-image: linear-gradient(to right, #ff0050, #00f2ea); }
+      .linkedin-border { background-image: linear-gradient(to right, #0077b5, #0a66c2); }
+      .youtube-border { background-image: linear-gradient(to right, #ff0000, #c4302b); }
+      .partnership-border { background-image: linear-gradient(to right, #2dd4bf, #4f46e5, #2dd4bf); } /* teal-400 to indigo-600 */
+      .about-border { background-image: linear-gradient(to right, #ec4899, #a855f7, #ec4899); } /* pink-500 to purple-500 */
+
+      /* Animation Keyframes */
+      @keyframes gradient-animation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translate3d(0, 40px, 0);
+        }
+        to {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes modal-in {
+        from {
+          opacity: 0;
+          transform: scale(0.95) translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      @keyframes border-pulse {
+        50% { opacity: 0.5; }
+      }
+      .animate-fade-in {
+          animation: fadeIn 0.7s ease-in-out forwards;
+      }
+      .animate-modal-in {
+        animation: modal-in 0.3s ease-out forwards;
+      }
+      .animated-gradient-bg {
+        background-size: 200% auto;
+        animation: gradient-animation 8s ease infinite;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.1.1/",
+    "react/": "https://esm.sh/react@^19.1.1/",
+    "react": "https://esm.sh/react@^19.1.1",
+    "framer-motion": "https://esm.sh/framer-motion@^11.3.12"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
