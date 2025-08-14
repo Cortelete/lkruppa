@@ -1,3 +1,4 @@
+
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useAnimationFrame, wrap, useMotionValueEvent, useReducedMotion } from 'framer-motion';
 import LinkButton from '../components/LinkButton';
@@ -136,7 +137,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
     <div className="flex flex-col items-center justify-center pt-4 pb-4 animate-fade-in">
       <div className="relative w-44 h-44 md:w-56 md:h-56">
         {/* Animated RGB Border */}
-        <div className="absolute -inset-0.5 rounded-full rgb-border-gradient [animation:rgb-border-spin_4s_linear_infinite]" />
+        <div className="absolute -inset-px rounded-full rgb-border-gradient [animation:rgb-border-spin_4s_linear_infinite]" />
         
         {/* Container for the image, creating the border effect with padding */}
         <div 
@@ -166,13 +167,13 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
         ">
         LK
       </h1>
-      <p className="text-sm md:text-base font-medium text-gray-700 dark:text-gray-200">
+      <p className="text-lg md:text-xl font-semibold bg-gradient-to-r from-pink-600 to-purple-600 dark:from-cyan-400 dark:to-blue-500 bg-clip-text text-transparent">
         Luiza Kruppa
       </p>
       <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-200 mt-0.5">
         Fisioterapeuta em formação & Digital Influencer
       </p>
-       <p className="text-xs text-gray-700 dark:text-gray-200 mt-1 italic px-4 text-center">
+       <p className="text-sm font-medium text-pink-600/90 dark:text-cyan-400/90 mt-2 px-4 text-center">
         "Transformando movimento em arte e inspiração no digital."
       </p>
 
