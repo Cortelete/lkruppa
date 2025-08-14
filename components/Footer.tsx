@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
 
     return (
         <footer className="text-center pt-8 pb-4 text-xs text-gray-700 dark:text-gray-300">
-            <div className="inline-block bg-white/20 dark:bg-black/30 backdrop-blur-lg rounded-xl p-4 border border-white/30 dark:border-white/10 shadow-lg">
+            <div className="inline-block bg-white/20 dark:bg-black/30 backdrop-blur-lg rounded-xl p-4 border border-white/30 dark:border-white/10 shadow-lg transition-transform duration-300 hover:scale-[1.02]">
                 <div className="flex flex-col items-center space-y-4">
                     <div className="flex items-center space-x-2">
                         <span className="opacity-80">Desenvolvido por</span>

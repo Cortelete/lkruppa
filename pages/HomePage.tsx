@@ -1,6 +1,6 @@
 
 import React, { useRef } from 'react';
-import { motion, useMotionValue, useAnimationFrame, wrap, useMotionValueEvent } from 'framer-motion';
+import { motion, useMotionValue, useAnimationFrame, wrap, useMotionValueEvent, useReducedMotion } from 'framer-motion';
 import LinkButton from '../components/LinkButton';
 import { InstagramIcon, TiktokIcon, EmailIcon, LinkedinIcon, YoutubeIcon } from '../components/icons';
 
@@ -107,15 +107,17 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
   const isDragging = useRef(false);
   
   // The scroll velocity in pixels per second
-  const scrollVelocity = -25;
+  const scrollVelocity = -15;
   const x = useMotionValue(0);
   
   // Width of one set of links. 6 cards * (176px width + 16px gap) = 1152
   const singleSetWidth = 1152;
   
+  const shouldReduceMotion = useReducedMotion();
+  
   useAnimationFrame((time, delta) => {
-      // Pause animation if user is interacting
-      if (isHovering.current || isDragging.current) return;
+      // Pause animation if user is interacting or prefers reduced motion
+      if (isHovering.current || isDragging.current || shouldReduceMotion) return;
       
       let moveBy = scrollVelocity * (delta / 1000);
       x.set(x.get() + moveBy);

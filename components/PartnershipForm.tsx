@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 const contactEmail = 'luizakruppacontato@gmail.com';
@@ -12,6 +13,7 @@ const reasonsForContact = [
 
 interface PartnershipFormProps {
     onClose: () => void;
+    onShowManualEmail: (formData: any) => void;
 }
 
 const InputField: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -20,7 +22,7 @@ const InputField: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     </div>
 );
 
-const PartnershipForm: React.FC<PartnershipFormProps> = ({ onClose }) => {
+const PartnershipForm: React.FC<PartnershipFormProps> = ({ onClose, onShowManualEmail }) => {
     const [formData, setFormData] = useState({
         name: '',
         company: '',
@@ -76,10 +78,9 @@ const PartnershipForm: React.FC<PartnershipFormProps> = ({ onClose }) => {
             }
         } catch (err) {
             setSubmissionState('error');
-            setErrorMessage((err as Error).message || 'Falha na conexão. Por favor, tente novamente mais tarde.');
+            setErrorMessage((err as Error).message || 'Ocorreu um erro inesperado.');
         }
     };
-
 
     const isFormValid = formData.name && formData.email && formData.reasons.length > 0;
     
@@ -112,19 +113,33 @@ const PartnershipForm: React.FC<PartnershipFormProps> = ({ onClose }) => {
     
     if (submissionState === 'error') {
        return (
-            <div className="text-center py-8 px-4 flex flex-col items-center">
+            <div className="text-center py-4 px-2 sm:px-4 flex flex-col items-center">
                 <svg className="w-16 h-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <h3 className="text-xl font-bold text-gray-800 dark:text-white mt-4">Ops! Algo deu errado.</h3>
-                <p className="text-gray-600 dark:text-gray-300 mt-2">{errorMessage}</p>
-                <button
-                    type="button"
-                    onClick={() => setSubmissionState('idle')}
-                    className="mt-6 w-full max-w-xs px-6 py-2.5 rounded-lg text-sm font-medium text-white bg-gray-500 hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400"
-                >
-                    Tentar Novamente
-                </button>
+                <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm max-w-sm">{errorMessage || "Não foi possível enviar sua mensagem no momento."}</p>
+                
+                <p className="text-sm text-gray-600 dark:text-gray-300 mt-6">
+                    Você pode tentar novamente ou enviar os dados manualmente por e-mail.
+                </p>
+
+                <div className="w-full flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4 mt-6">
+                    <button
+                        type="button"
+                        onClick={() => setSubmissionState('idle')}
+                        className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    >
+                        Tentar Novamente
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => onShowManualEmail(formData)}
+                        className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-sm font-medium text-white bg-pink-500 dark:bg-cyan-500 hover:bg-pink-600 dark:hover:bg-cyan-600 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-400 dark:focus:ring-cyan-400"
+                    >
+                        Enviar Manualmente
+                    </button>
+                </div>
             </div>
        );
     }
