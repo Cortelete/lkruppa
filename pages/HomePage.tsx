@@ -81,7 +81,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
         textColor: 'text-white',
         hoverTextColor: 'group-hover:text-white',
         borderColor: 'linkedin-border',
-        gradientClass: 'bg-gradient-to-br from-blue-600 to-sky-700'
+        gradientClass: 'bg-gradient-to-br from-blue-700 via-cyan-500 to-blue-700 animated-gradient-bg'
       },
       hasShineEffect: true,
     },
@@ -93,7 +93,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
         textColor: 'text-white',
         hoverTextColor: 'group-hover:text-white',
         borderColor: 'youtube-border',
-        gradientClass: 'bg-gradient-to-br from-red-500 to-rose-600'
+        gradientClass: 'bg-gradient-to-br from-red-600 via-rose-400 to-red-600 animated-gradient-bg'
       },
       hasShineEffect: true,
     },
