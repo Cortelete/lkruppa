@@ -1,5 +1,7 @@
 
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import StatusView from './StatusView';
 
 const contactEmail = 'luizakruppacontato@gmail.com';
 
@@ -94,53 +96,49 @@ const PartnershipForm: React.FC<PartnershipFormProps> = ({ onClose, onShowManual
 
     if (submissionState === 'success') {
         return (
-            <div className="text-center py-8 px-4 flex flex-col items-center">
-                <svg className="w-16 h-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mt-4">Mensagem Enviada!</h3>
-                <p className="text-gray-600 dark:text-gray-300 mt-2">Obrigado! Sua mensagem foi recebida e retornaremos em breve.</p>
-                <button
-                    type="button"
+            <StatusView
+                status="success"
+                title="Mensagem Enviada!"
+                message="Obrigado! Sua mensagem foi recebida e retornaremos em breve."
+            >
+                 <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={onClose}
-                    className="mt-6 w-full max-w-xs px-6 py-2.5 rounded-lg text-sm font-medium text-white bg-pink-500 dark:bg-cyan-500 hover:bg-pink-600 dark:hover:bg-cyan-600 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-400 dark:focus:ring-cyan-400"
+                    className="relative group overflow-hidden w-full max-w-xs px-8 py-3 rounded-xl text-lg font-semibold text-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 shadow-lg bg-gradient-to-r from-green-500 to-emerald-600 hover:brightness-110 focus:ring-green-400"
                 >
+                    <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-45 group-hover:left-full transition-all duration-700 ease-in-out" />
                     Fechar
-                </button>
-            </div>
+                </motion.button>
+            </StatusView>
         );
     }
     
     if (submissionState === 'error') {
        return (
-            <div className="text-center py-4 px-2 sm:px-4 flex flex-col items-center">
-                <svg className="w-16 h-16 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white mt-4">Ops! Algo deu errado.</h3>
-                <p className="text-gray-600 dark:text-gray-300 mt-2 text-sm max-w-sm">{errorMessage || "Não foi possível enviar sua mensagem no momento."}</p>
-                
-                <p className="text-sm text-gray-600 dark:text-gray-300 mt-6">
-                    Você pode tentar novamente ou enviar os dados manualmente por e-mail.
-                </p>
-
-                <div className="w-full flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4 mt-6">
-                    <button
-                        type="button"
-                        onClick={() => setSubmissionState('idle')}
-                        className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-sm font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400"
-                    >
-                        Tentar Novamente
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => onShowManualEmail(formData)}
-                        className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-sm font-medium text-white bg-pink-500 dark:bg-cyan-500 hover:bg-pink-600 dark:hover:bg-cyan-600 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-400 dark:focus:ring-cyan-400"
-                    >
-                        Enviar Manualmente
-                    </button>
-                </div>
-            </div>
+            <StatusView
+                status="error"
+                title="Ops! Algo deu errado."
+                message={errorMessage || "Não foi possível enviar sua mensagem no momento."}
+            >
+                <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setSubmissionState('idle')}
+                    className="w-full sm:w-auto px-6 py-2.5 rounded-lg text-sm sm:text-base font-medium bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400"
+                >
+                    Tentar Novamente
+                </motion.button>
+                <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => onShowManualEmail(formData)}
+                    className="relative group overflow-hidden w-full sm:w-auto px-6 py-2.5 rounded-lg text-sm sm:text-base font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-800 bg-pink-500 dark:bg-cyan-500 hover:bg-pink-600 dark:hover:bg-cyan-600 focus:ring-pink-400 dark:focus:ring-cyan-400"
+                >
+                    <div className="absolute top-0 -left-full w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-45 group-hover:left-full transition-all duration-700 ease-in-out" />
+                    Enviar Manualmente
+                </motion.button>
+            </StatusView>
        );
     }
 

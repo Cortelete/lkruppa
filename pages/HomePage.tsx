@@ -5,10 +5,11 @@ import LinkButton from '../components/LinkButton';
 import { InstagramIcon, TiktokIcon, EmailIcon, LinkedinIcon, YoutubeIcon } from '../components/icons';
 
 interface HomePageProps {
-  onNavigate: (url: string, title: string, content: string, confirmButtonClass?: string) => void;
+  onNavigate: (url: string, icon: React.ReactNode, title: string, content: string, confirmButtonClass?: string) => void;
   onShowAbout: () => void;
   onShowConstructionModal: () => void;
-  onShowPartnershipForm: () => void;
+  onShowPartnershipIntro: () => void;
+  onShowHighlights: () => void;
   onShowVideoModal: () => void;
 }
 
@@ -27,12 +28,12 @@ interface LinkData {
   hasShineEffect?: boolean;
 }
 
-const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowConstructionModal, onShowPartnershipForm, onShowVideoModal }) => {
+const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowConstructionModal, onShowPartnershipIntro, onShowHighlights, onShowVideoModal }) => {
   const links: LinkData[] = [
     {
       text: 'Insta',
       icon: <InstagramIcon />,
-      action: () => onNavigate('https://www.instagram.com/luizaalk_/', 'Abrir Instagram', 'Você será redirecionado para o perfil da Luiza no Instagram.', 'bg-pink-600 hover:bg-pink-700 focus:ring-pink-500'),
+      action: () => onNavigate('https://www.instagram.com/luizaalk_/', <InstagramIcon className="w-10 h-10 text-pink-500"/>, 'Abrir Instagram', 'Você será redirecionado para o perfil da Luiza no Instagram.', 'bg-pink-600 hover:bg-pink-700 focus:ring-pink-500'),
       styling: {
         textColor: 'text-white',
         hoverTextColor: 'group-hover:text-white',
@@ -42,7 +43,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
     {
       text: 'TikTok +300K',
       icon: <TiktokIcon className="filter-3d-effect" />,
-      action: () => onNavigate('https://www.tiktok.com/@luizakruppa0', 'Abrir TikTok', 'Você será redirecionado para o perfil da Luiza no TikTok.', 'bg-red-500 hover:bg-red-600 dark:bg-sky-400 dark:hover:bg-sky-500 focus:ring-red-400 dark:focus:ring-sky-300'),
+      action: () => onNavigate('https://www.tiktok.com/@luizakruppa0', <TiktokIcon className="w-8 h-8 filter-3d-effect" />, 'Abrir TikTok', 'Você será redirecionado para o perfil da Luiza no TikTok.', 'bg-red-500 hover:bg-red-600 dark:bg-sky-400 dark:hover:bg-sky-500 focus:ring-red-400 dark:focus:ring-sky-300'),
       styling: {
         textColor: 'text-white',
         hoverTextColor: 'group-hover:text-white',
@@ -53,7 +54,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
     {
       text: 'Parcerias',
       icon: <EmailIcon />,
-      action: onShowPartnershipForm,
+      action: onShowPartnershipIntro,
       styling: {
         textColor: 'text-white',
         hoverTextColor: 'group-hover:text-white',
@@ -71,6 +72,18 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
         hoverTextColor: 'group-hover:text-white',
         borderColor: 'about-border',
         gradientClass: 'bg-gradient-to-br from-pink-500 via-purple-500 to-pink-500 animated-gradient-bg'
+      },
+      hasShineEffect: true,
+    },
+    {
+      text: 'Destaques',
+      icon: <span className="text-3xl">⭐</span>,
+      action: onShowHighlights,
+      styling: {
+        textColor: 'text-white',
+        hoverTextColor: 'group-hover:text-white',
+        borderColor: 'highlights-border',
+        gradientClass: 'bg-gradient-to-br from-yellow-400 via-orange-400 to-yellow-400 animated-gradient-bg'
       },
       hasShineEffect: true,
     },
@@ -110,8 +123,8 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
   const scrollVelocity = -15;
   const x = useMotionValue(0);
   
-  // Width of one set of links. 6 cards * (176px width + 16px gap) = 1152
-  const singleSetWidth = 1152;
+  // Width of one set of links. 7 cards * (176px width + 16px gap) = 1344
+  const singleSetWidth = 1344;
   
   const shouldReduceMotion = useReducedMotion();
   

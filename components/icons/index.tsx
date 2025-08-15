@@ -1,4 +1,3 @@
-
 export { default as InstagramIcon } from './InstagramIcon';
 export { default as TiktokIcon } from './TiktokIcon';
 export { default as EmailIcon } from './EmailIcon';
@@ -9,3 +8,10 @@ export { default as SunIcon } from './SunIcon';
 export { default as MoonIcon } from './MoonIcon';
 export { default as BackArrowIcon } from './BackArrowIcon';
 export { default as CloseIcon } from './CloseIcon';
+export { default as ConstructionIcon } from './ConstructionIcon';
+export { default as ErrorIcon } from './ErrorIcon';
+export { default as SuccessIcon } from './SuccessIcon';
+export { default as ContentCreationIcon } from './ContentCreationIcon';
+export { default as DanceIcon } from './DanceIcon';
+export { default as CommunicationIcon } from './CommunicationIcon';
+export { default as PhysiotherapyIcon } from './PhysiotherapyIcon';

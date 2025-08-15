@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect, useCallback } from 'react';
 import { Theme, ModalState } from './types';
 import HomePage from './pages/HomePage';
@@ -7,6 +8,10 @@ import Footer from './components/Footer';
 import ThemeToggle from './components/ThemeToggle';
 import Modal from './components/Modal';
 import PartnershipForm from './components/PartnershipForm';
+import PartnershipIntro from './components/PartnershipIntro';
+import ConfirmationView from './components/ConfirmationView';
+import { ConstructionIcon, TiktokIcon } from './components/icons';
+import HighlightsPage from './pages/HighlightsPage';
 
 const contactEmail = 'luizakruppacontato@gmail.com';
 
@@ -149,19 +154,26 @@ const App: React.FC = () => {
     });
   }, [closeModal]);
 
-  const handleNavigation = useCallback((url: string, title: string, content: string, confirmButtonClass?: string) => {
+  const handleNavigation = useCallback((url: string, icon: React.ReactNode, title: string, content: string, confirmButtonClass?: string) => {
+    const doNavigate = () => window.open(url, '_blank', 'noopener,noreferrer');
+    
     setModalState({
       isOpen: true,
-      title,
+      title: '', // Title is now inside ConfirmationView
       content: (
-        <div>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">{content}</p>
-        </div>
+        <ConfirmationView
+            icon={icon}
+            title={title}
+            message={content}
+            onConfirm={doNavigate}
+            onCancel={closeModal}
+            confirmButtonClass={confirmButtonClass}
+        />
       ),
-      onConfirm: () => window.open(url, '_blank', 'noopener,noreferrer'),
-      confirmButtonClass,
+      onConfirm: () => {},
+      hideActions: true,
     });
-  }, []);
+  }, [closeModal]);
 
   const handleShowAbout = useCallback(() => {
     setModalState({
@@ -172,15 +184,33 @@ const App: React.FC = () => {
         hideActions: true,
     });
   }, []);
+  
+  const handleShowHighlights = useCallback(() => {
+    setModalState({
+        isOpen: true,
+        title: "",
+        content: <HighlightsPage />,
+        onConfirm: () => {},
+        hideActions: true,
+    });
+  }, []);
 
   const handleShowConstructionModal = useCallback(() => {
     setModalState({
         isOpen: true,
-        title: "Em Breve!",
-        content: <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">Esta seção está em construção para uma melhor experiência.</p>,
-        onConfirm: closeModal,
-        confirmText: "Entendi",
-        cancelText: null, // Hides the cancel button
+        title: "",
+        content: <ConfirmationView
+            icon={<ConstructionIcon className="w-10 h-10 text-amber-500" />}
+            title="Em Breve!"
+            message="Esta seção está em construção para uma melhor experiência."
+            onConfirm={closeModal}
+            onCancel={() => {}}
+            confirmText="Entendi"
+            cancelText={null}
+            confirmButtonClass="bg-amber-500 hover:bg-amber-600 focus:ring-amber-400"
+        />,
+        onConfirm: () => {},
+        hideActions: true,
     });
   }, [closeModal]);
 
@@ -193,18 +223,41 @@ const App: React.FC = () => {
         hideActions: true,
     });
   }, [closeModal, handleShowManualEmail]);
+  
+  const handleShowPartnershipIntro = useCallback(() => {
+    const openForm = () => {
+        handleShowPartnershipForm();
+    };
 
-  const handleShowEasterEggModal = useCallback(() => {
     setModalState({
         isOpen: true,
-        title: "Opa!",
-        content: <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 text-center">Ah curioso 👀, já que veio aqui, corre lá no TikTok e veja meu último vídeo!! 💃🕺</p>,
-        onConfirm: () => window.open('https://www.tiktok.com/@luizakruppa0', '_blank', 'noopener,noreferrer'),
-        confirmText: "Ir para o TikTok",
-        cancelText: "Fechar",
-        confirmButtonClass: 'bg-red-500 hover:bg-red-600 dark:bg-sky-400 dark:hover:bg-sky-500 focus:ring-red-400 dark:focus:ring-sky-300',
+        title: "Iniciar Parceria",
+        content: <PartnershipIntro onContinue={openForm} />,
+        hideActions: true,
+        onConfirm: () => {},
     });
-  }, []);
+  }, [handleShowPartnershipForm]);
+
+  const handleShowEasterEggModal = useCallback(() => {
+    const openTikTok = () => window.open('https://www.tiktok.com/@luizakruppa0', '_blank', 'noopener,noreferrer');
+    
+    setModalState({
+        isOpen: true,
+        title: "",
+        content: <ConfirmationView
+            icon={<TiktokIcon className="w-8 h-8 filter-3d-effect" />}
+            title="Opa!"
+            message="Ah curioso 👀, já que veio aqui, corre lá no TikTok e veja meu último vídeo!! 💃🕺"
+            onConfirm={openTikTok}
+            onCancel={closeModal}
+            confirmText="Ir para o TikTok"
+            cancelText="Fechar"
+            confirmButtonClass="bg-red-500 hover:bg-red-600 dark:bg-sky-400 dark:hover:bg-sky-500 focus:ring-red-400 dark:focus:ring-sky-300"
+        />,
+        onConfirm: () => {},
+        hideActions: true,
+    });
+  }, [closeModal]);
   
   const handleShowVideoModal = useCallback(() => {
     setModalState({
@@ -250,7 +303,7 @@ const App: React.FC = () => {
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           
           <main className="transition-opacity duration-500">
-            <HomePage onNavigate={handleNavigation} onShowAbout={handleShowAbout} onShowConstructionModal={handleShowConstructionModal} onShowPartnershipForm={handleShowPartnershipForm} onShowVideoModal={handleShowVideoModal} />
+            <HomePage onNavigate={handleNavigation} onShowAbout={handleShowAbout} onShowConstructionModal={handleShowConstructionModal} onShowPartnershipIntro={handleShowPartnershipIntro} onShowHighlights={handleShowHighlights} onShowVideoModal={handleShowVideoModal} />
           </main>
           
           <Footer />
