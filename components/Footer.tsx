@@ -1,9 +1,10 @@
 
+
 import React from 'react';
 import { InstagramIcon, WhatsappIcon } from './icons';
 
 const Footer: React.FC = () => {
-    const whatsappMessage = encodeURIComponent("quer um site link assim só seu? Envie uma mensagem para a InteligenciArte.IA");
+    const whatsappMessage = encodeURIComponent("Olá! Adorei o site 'link na bio' da Luiza Kruppa e gostaria de mais informações sobre o seu trabalho.");
     const whatsappUrl = `https://wa.me/5541988710303?text=${whatsappMessage}`;
 
     return (
