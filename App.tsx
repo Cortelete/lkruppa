@@ -233,7 +233,7 @@ const App: React.FC = () => {
     <div className="min-h-screen text-gray-800 dark:text-gray-100 transition-colors duration-500 flex items-center justify-center p-2 sm:p-4">
       <div className="relative w-full max-w-lg bg-white/20 dark:bg-black/30 backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-2xl border border-white/30 dark:border-white/10 overflow-hidden max-h-[98vh]">
         <div
-          className="absolute inset-0 z-0 bg-cover bg-right-bottom bg-no-repeat opacity-10 dark:opacity-20"
+          className="absolute inset-0 z-0 bg-cover bg-left-bottom bg-no-repeat opacity-10 dark:opacity-20"
           style={{ backgroundImage: "url('/fotofundo.png')" }}
           aria-hidden="true"
         />
