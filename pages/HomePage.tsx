@@ -1,4 +1,3 @@
-
 import React, { useRef } from 'react';
 import { motion, useMotionValue, useAnimationFrame, wrap, useMotionValueEvent, useReducedMotion } from 'framer-motion';
 import LinkButton from '../components/LinkButton';
@@ -31,7 +30,7 @@ interface LinkData {
 const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowConstructionModal, onShowPartnershipIntro, onShowHighlights, onShowVideoModal }) => {
   const links: LinkData[] = [
     {
-      text: 'Insta',
+      text: '@luizaalk_',
       icon: <InstagramIcon />,
       action: () => onNavigate('https://www.instagram.com/luizaalk_/', <InstagramIcon className="w-10 h-10 text-pink-500"/>, 'Abrir Instagram', 'Você será redirecionado para o perfil da Luiza no Instagram.', 'bg-pink-600 hover:bg-pink-700 focus:ring-pink-500'),
       styling: {
