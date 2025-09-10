@@ -39,6 +39,7 @@ const imageSequence = [
 const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowConstructionModal, onShowPartnershipIntro, onShowHighlights }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const controls = useAnimation();
+  const rotation = useRef(0);
 
   useEffect(() => {
     const { duration } = imageSequence[currentImageIndex];
@@ -50,8 +51,9 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
   }, [currentImageIndex]);
   
   const handleImageClick = () => {
+    rotation.current += 360;
     controls.start({
-      rotateY: [0, 360],
+      rotateY: rotation.current,
       transition: { duration: 0.6, ease: 'easeInOut' },
     });
     // Advance to the next image on click
