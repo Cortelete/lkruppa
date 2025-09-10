@@ -133,7 +133,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
     {
       text: 'Youtube',
       icon: <YoutubeIcon className="w-7 h-7" />,
-      action: onShowConstructionModal,
+      action: () => onNavigate('https://www.youtube.com/@luizaalk', <YoutubeIcon className="w-10 h-10 text-red-500"/>, 'Abrir YouTube', 'Você será redirecionado para o canal da Luiza no YouTube.', 'bg-red-600 hover:bg-red-700 focus:ring-red-500'),
       styling: {
         textColor: 'text-white',
         hoverTextColor: 'group-hover:text-white',
