@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
-import { motion, useMotionValue, useAnimationFrame, wrap, useMotionValueEvent, useReducedMotion } from 'framer-motion';
+
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useMotionValue, useAnimationFrame, wrap, useMotionValueEvent, useReducedMotion, AnimatePresence } from 'framer-motion';
 import LinkButton from '../components/LinkButton';
 import { InstagramIcon, TiktokIcon, EmailIcon, LinkedinIcon, YoutubeIcon } from '../components/icons';
 
@@ -27,7 +28,19 @@ interface LinkData {
   hasShineEffect?: boolean;
 }
 
+const profileImages = ['/profile.png', '/profile2.png', '/profile3.png'];
+
 const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowConstructionModal, onShowPartnershipIntro, onShowHighlights, onShowVideoModal }) => {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex(prevIndex => (prevIndex + 1) % profileImages.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(intervalId); // Cleanup on component unmount
+  }, []);
+
   const links: LinkData[] = [
     {
       text: '@luizaalk_',
@@ -156,8 +169,21 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
           onClick={onShowVideoModal}
           className="relative group w-full h-full rounded-full overflow-hidden p-2 shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer"
         >
-            <img src="/profile.png" alt="Luiza Kruppa" className="w-full h-full object-cover rounded-full transition-all duration-300 group-hover:brightness-75" />
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="relative w-full h-full rounded-full overflow-hidden">
+                <AnimatePresence>
+                    <motion.img
+                        key={currentImageIndex}
+                        src={profileImages[currentImageIndex]}
+                        alt="Luiza Kruppa"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.7, ease: 'easeInOut' }}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:brightness-75 transition-all duration-300"
+                    />
+                </AnimatePresence>
+            </div>
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
                 <svg className="w-10 h-10 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"></path>
                 </svg>
