@@ -45,11 +45,11 @@ const StatCard: React.FC<{ value: string; label: string }> = ({ value, label }) 
 );
 
 const statsData = [
-    { value: "+300 Mil", label: "no TikTok" },
-    { value: "+100 Mil", label: "no Instagram" },
+    { value: "+400 Mil", label: "no TikTok" },
+    { value: "+110 Mil", label: "no Instagram" },
     { value: "+10 Milhões", label: "de Views (3 meses)" },
-    { value: "+6 Milhões", label: "Views no TikTok" },
-    { value: "+4.5 Milhões", label: "Views no Instagram" },
+    { value: "+9 Milhões", label: "Views no TikTok" },
+    { value: "+5 Milhões", label: "Views no Instagram" },
     { value: "+1 Milhão", label: "Contas alcançadas/mês" },
 ];
 
