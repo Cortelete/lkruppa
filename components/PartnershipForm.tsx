@@ -1,9 +1,10 @@
 
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import StatusView from './StatusView';
 
-const contactEmail = 'luizakruppacontato@gmail.com';
+const contactEmail = 'luizakruppa8@gmail.com';
 
 const reasonsForContact = [
     "Publicidade no Instagram",

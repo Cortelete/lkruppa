@@ -13,7 +13,7 @@ import ConfirmationView from './components/ConfirmationView';
 import { ConstructionIcon, TiktokIcon } from './components/icons';
 import HighlightsPage from './pages/HighlightsPage';
 
-const contactEmail = 'luizakruppacontato@gmail.com';
+const contactEmail = 'luizakruppa8@gmail.com';
 
 // Componente para o conteúdo do modal de envio manual
 const ManualEmailContent: React.FC<{ formData: any, onClose: () => void }> = ({ formData, onClose }) => {
