@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 
 export enum Theme {
@@ -15,5 +16,4 @@ export interface ModalState {
   cancelText?: string | null; // Allow null to hide the button
   hideActions?: boolean;
   confirmButtonClass?: string;
-  size?: 'md' | 'xl';
 }

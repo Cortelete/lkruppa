@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { CloseIcon } from './icons';
 
@@ -12,18 +13,16 @@ interface ModalProps {
   cancelText?: string | null;
   hideActions?: boolean;
   confirmButtonClass?: string;
-  size?: 'md' | 'xl';
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, title, onClose, onConfirm, children, confirmText, cancelText, hideActions = false, confirmButtonClass, size = 'md' }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, title, onClose, onConfirm, children, confirmText, cancelText, hideActions = false, confirmButtonClass }) => {
   if (!isOpen) return null;
 
   const containerClasses = `
-    relative w-full
-    ${size === 'xl' ? 'max-w-3xl aspect-video' : 'max-w-md'}
-    ${size === 'xl' ? 'p-0 bg-black' : 'p-6 bg-white dark:bg-gray-800'}
+    relative w-full max-w-md
+    p-6 bg-white dark:bg-gray-800
     rounded-2xl shadow-2xl
-    ${size === 'xl' ? 'border-none' : 'border border-gray-200 dark:border-gray-700'}
+    border border-gray-200 dark:border-gray-700
     transform transition-all duration-300 ease-out scale-95 animate-modal-in
   `;
   
@@ -40,7 +39,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, title, onClose, onConfirm, childr
       >
         <button
             onClick={onClose}
-            className={`absolute top-3 right-3 text-gray-400 transition-colors p-2 rounded-full z-10 ${size === 'xl' ? 'hover:text-white bg-black/50' : 'hover:text-gray-600 dark:hover:text-white'}`}
+            className="absolute top-3 right-3 text-gray-400 transition-colors p-2 rounded-full z-10 hover:text-gray-600 dark:hover:text-white"
             aria-label="Fechar modal"
         >
             <CloseIcon className="w-5 h-5" />

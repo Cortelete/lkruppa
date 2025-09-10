@@ -258,29 +258,6 @@ const App: React.FC = () => {
         hideActions: true,
     });
   }, [closeModal]);
-  
-  const handleShowVideoModal = useCallback(() => {
-    setModalState({
-        isOpen: true,
-        title: "",
-        content: (
-            <video
-                src="/profile-video.mp4"
-                className="w-full h-full object-cover rounded-2xl"
-                controls
-                autoPlay
-                muted
-                loop
-                playsInline
-            >
-                Seu navegador não suporta a tag de vídeo.
-            </video>
-        ),
-        onConfirm: () => {},
-        hideActions: true,
-        size: 'xl',
-    });
-  }, []);
 
   return (
     <div className="min-h-screen text-gray-800 dark:text-gray-100 transition-colors duration-500 flex items-center justify-center p-2 sm:p-4">
@@ -303,7 +280,7 @@ const App: React.FC = () => {
           <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
           
           <main className="transition-opacity duration-500">
-            <HomePage onNavigate={handleNavigation} onShowAbout={handleShowAbout} onShowConstructionModal={handleShowConstructionModal} onShowPartnershipIntro={handleShowPartnershipIntro} onShowHighlights={handleShowHighlights} onShowVideoModal={handleShowVideoModal} />
+            <HomePage onNavigate={handleNavigation} onShowAbout={handleShowAbout} onShowConstructionModal={handleShowConstructionModal} onShowPartnershipIntro={handleShowPartnershipIntro} onShowHighlights={handleShowHighlights} />
           </main>
           
           <Footer />
@@ -322,7 +299,6 @@ const App: React.FC = () => {
         cancelText={modalState.cancelText}
         hideActions={modalState.hideActions}
         confirmButtonClass={modalState.confirmButtonClass}
-        size={modalState.size}
       >
         {modalState.content}
       </Modal>

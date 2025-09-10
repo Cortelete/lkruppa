@@ -1,6 +1,6 @@
 
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useAnimationFrame, wrap, useMotionValueEvent, useReducedMotion, AnimatePresence } from 'framer-motion';
+import { motion, useMotionValue, useAnimationFrame, wrap, useMotionValueEvent, useReducedMotion, AnimatePresence, useAnimation } from 'framer-motion';
 import LinkButton from '../components/LinkButton';
 import { InstagramIcon, TiktokIcon, EmailIcon, LinkedinIcon, YoutubeIcon } from '../components/icons';
 
@@ -10,7 +10,6 @@ interface HomePageProps {
   onShowConstructionModal: () => void;
   onShowPartnershipIntro: () => void;
   onShowHighlights: () => void;
-  onShowVideoModal: () => void;
 }
 
 interface LinkData {
@@ -28,18 +27,36 @@ interface LinkData {
   hasShineEffect?: boolean;
 }
 
-const profileImages = ['/profile.png', '/profile2.png', '/profile3.png'];
+const imageSequence = [
+  { src: '/profile.png', duration: 5000 },
+  { src: '/logo.png', duration: 1000 },
+  { src: '/profile2.png', duration: 5000 },
+  { src: '/logo.png', duration: 1000 },
+  { src: '/profile3.png', duration: 5000 },
+  { src: '/logo.png', duration: 1000 },
+];
 
-const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowConstructionModal, onShowPartnershipIntro, onShowHighlights, onShowVideoModal }) => {
+const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowConstructionModal, onShowPartnershipIntro, onShowHighlights }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const controls = useAnimation();
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentImageIndex(prevIndex => (prevIndex + 1) % profileImages.length);
-    }, 5000); // Change image every 5 seconds
+    const { duration } = imageSequence[currentImageIndex];
+    const timer = setTimeout(() => {
+      setCurrentImageIndex(prevIndex => (prevIndex + 1) % imageSequence.length);
+    }, duration);
 
-    return () => clearInterval(intervalId); // Cleanup on component unmount
-  }, []);
+    return () => clearTimeout(timer);
+  }, [currentImageIndex]);
+  
+  const handleImageClick = () => {
+    controls.start({
+      rotateY: [0, 360],
+      transition: { duration: 0.6, ease: 'easeInOut' },
+    });
+    // Advance to the next image on click
+    setCurrentImageIndex(prevIndex => (prevIndex + 1) % imageSequence.length);
+  };
 
   const links: LinkData[] = [
     {
@@ -164,31 +181,29 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
         {/* Animated RGB Border */}
         <div className="absolute -inset-px rounded-full rgb-border-gradient [animation:rgb-border-spin_4s_linear_infinite]" />
         
-        {/* Container for the image, creating the border effect with padding */}
-        <div 
-          onClick={onShowVideoModal}
-          className="relative group w-full h-full rounded-full overflow-hidden p-2 shadow-lg transform hover:scale-105 transition-all duration-300 cursor-pointer"
+        {/* Container for the image, now a motion component for animation */}
+        <motion.div 
+          onClick={handleImageClick}
+          animate={controls}
+          whileHover={{ scale: 1.05 }}
+          className="relative group w-full h-full rounded-full p-2 shadow-lg transition-all duration-300 cursor-pointer"
+          style={{ perspective: '1000px' }}
         >
-            <div className="relative w-full h-full rounded-full overflow-hidden">
+            <div className="relative w-full h-full rounded-full overflow-hidden" style={{ transformStyle: 'preserve-3d' }}>
                 <AnimatePresence>
                     <motion.img
                         key={currentImageIndex}
-                        src={profileImages[currentImageIndex]}
+                        src={imageSequence[currentImageIndex].src}
                         alt="Luiza Kruppa"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.7, ease: 'easeInOut' }}
-                        className="absolute inset-0 w-full h-full object-cover group-hover:brightness-75 transition-all duration-300"
+                        className="absolute inset-0 w-full h-full object-cover"
                     />
                 </AnimatePresence>
             </div>
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-10">
-                <svg className="w-10 h-10 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd"></path>
-                </svg>
-            </div>
-        </div>
+        </motion.div>
       </div>
       <h1 className="
           relative group
