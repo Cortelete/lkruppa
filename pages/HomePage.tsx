@@ -31,7 +31,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
   const links: LinkData[] = [
     {
       text: '@luizaalk_',
-      icon: <InstagramIcon />,
+      icon: <InstagramIcon className="w-7 h-7" />,
       action: () => onNavigate('https://www.instagram.com/luizaalk_/', <InstagramIcon className="w-10 h-10 text-pink-500"/>, 'Abrir Instagram', 'Você será redirecionado para o perfil da Luiza no Instagram.', 'bg-pink-600 hover:bg-pink-700 focus:ring-pink-500'),
       styling: {
         textColor: 'text-white',
@@ -76,7 +76,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
     },
     {
       text: 'Destaques',
-      icon: <span className="text-3xl">⭐</span>,
+      icon: <span className="text-4xl">⭐</span>,
       action: onShowHighlights,
       styling: {
         textColor: 'text-white',
@@ -88,7 +88,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
     },
     {
       text: 'LinkedIn',
-      icon: <LinkedinIcon />,
+      icon: <LinkedinIcon className="w-7 h-7" />,
       action: onShowConstructionModal,
       styling: {
         textColor: 'text-white',
@@ -100,7 +100,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
     },
     {
       text: 'Youtube',
-      icon: <YoutubeIcon />,
+      icon: <YoutubeIcon className="w-7 h-7" />,
       action: onShowConstructionModal,
       styling: {
         textColor: 'text-white',
@@ -183,10 +183,10 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
         Luiza Kruppa
       </p>
       <p className="text-xs sm:text-sm text-gray-700 dark:text-gray-200 mt-0.5">
-        Fisioterapeuta em formação & Digital Influencer
+        19 anos • Dançarina • Acadêmica
       </p>
        <p className="text-sm font-medium text-pink-600/90 dark:text-cyan-400/90 mt-2 px-4 text-center">
-        "Transformando movimento em arte e inspiração no digital."
+        "Não só danço, minha dança é tradução e expressão!"
       </p>
 
       <div className="w-full mt-6 overflow-hidden cursor-grab active:cursor-grabbing">
