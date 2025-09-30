@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect, useCallback } from 'react';
 import { Theme, ModalState } from './types';
 import HomePage from './pages/HomePage';
@@ -262,12 +261,18 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen text-gray-800 dark:text-gray-100 transition-colors duration-500 flex items-center justify-center p-2 sm:p-4">
       <div className="relative w-full max-w-lg bg-white/20 dark:bg-black/30 backdrop-blur-xl rounded-xl sm:rounded-2xl shadow-2xl border border-white/30 dark:border-white/10 overflow-hidden max-h-[98vh]">
+        <img
+          src="/outubrorosa.png"
+          alt="Outubro Rosa"
+          className="absolute top-16 left-1 w-12 h-auto object-contain z-10 pointer-events-none opacity-90"
+          aria-hidden="true"
+        />
         <div
           className="absolute inset-0 z-0 bg-cover bg-no-repeat opacity-10 dark:opacity-20 bg-center"
           style={{ backgroundImage: "url('/fotofundo.png')" }}
           aria-hidden="true"
         />
-        <div className="relative p-2 sm:p-4 overflow-y-auto">
+        <div className="relative p-2 sm:p-4 overflow-y-auto z-20">
           <div className="absolute top-4 left-4 z-10">
               <button
                   onClick={handleShowEasterEggModal}
