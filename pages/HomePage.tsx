@@ -72,7 +72,7 @@ const HomePage: React.FC<HomePageProps> = ({ onNavigate, onShowAbout, onShowCons
       },
     },
     {
-      text: 'TikTok +400K',
+      text: 'TikTok +530K',
       icon: <TiktokIcon className="filter-3d-effect" />,
       action: () => onNavigate('https://www.tiktok.com/@luizakruppa0', <TiktokIcon className="w-8 h-8 filter-3d-effect" />, 'Abrir TikTok', 'Você será redirecionado para o perfil da Luiza no TikTok.', 'bg-red-500 hover:bg-red-600 dark:bg-sky-400 dark:hover:bg-sky-500 focus:ring-red-400 dark:focus:ring-sky-300'),
       styling: {
